@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">CharPreferences</string>
+    <string name="title_activity_login">Login</string>
+    <string name="emailHint">e-mail</string>
+    <string name="passHint">Password</string>
+    <string name="switchRemember">Remember</string>
+    <string name="btnLogin">Login</string>
+</resources>

@@ -1,0 +1,87 @@
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Login">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineV20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.2" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineV80"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.8" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineH40"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.4" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineV50"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+
+    <EditText
+        android:id="@+id/editTextMail"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="48dp"
+        android:ems="10"
+        android:hint="@string/emailHint"
+        android:inputType="textEmailAddress"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineH40"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineV80"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/guidelineV20" />
+
+
+    <EditText
+        android:id="@+id/editTextPass"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:ems="10"
+        android:hint="@string/passHint"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineV80"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/guidelineV20"
+        app:layout_constraintTop_toTopOf="@+id/guidelineH40" />
+
+    <Switch
+        android:id="@+id/switchRemember"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:text="@string/switchRemember"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineV80"
+        app:layout_constraintTop_toBottomOf="@+id/editTextPass" />
+
+    <Button
+        android:id="@+id/buttonLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:text="@string/btnLogin"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineV80"
+        app:layout_constraintStart_toStartOf="@+id/guidelineV20"
+        app:layout_constraintTop_toBottomOf="@+id/switchRemember" />
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
