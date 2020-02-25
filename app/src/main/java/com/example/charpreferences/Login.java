@@ -3,11 +3,7 @@ package com.example.charpreferences;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
 import android.text.TextUtils;
 import android.util.Patterns;
@@ -17,25 +13,39 @@ import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.Toast;
 
-import java.util.regex.Pattern;
-
 public class Login extends AppCompatActivity {
     private EditText email;
     private EditText password;
     private Button btnLogin;
-    private Switch remember;
+    private Switch switchRemember;
+    private Preferences preferences;
+
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        preferences = new Preferences(this);
+
         buildUi();
+
+        email.setText(preferences.getPref(Preferences.MAIL));
+        password.setText(preferences.getPref(Preferences.PASSWORD));
+
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                login(email.getText().toString(), password.getText().toString());
+                if(!isValidLogin(email.getText().toString(), password.getText().toString()) ){
+                    Toast.makeText(Login.this, "Email or pass incorrect", Toast.LENGTH_SHORT).show();
+                }
+
+                if(switchRemember.isChecked()){
+                    saveOnPreferences(email.getText().toString(), password.getText().toString());
+                }
+
+                gotoMain();
             }
         });
 
@@ -45,25 +55,28 @@ public class Login extends AppCompatActivity {
         email = findViewById(R.id.editTextMail);
         password = findViewById(R.id.editTextPass);
         btnLogin = findViewById(R.id.buttonLogin);
-        remember = findViewById(R.id.switchRemember);
+        switchRemember = findViewById(R.id.switchRemember);
     }
 
 
-    private void login (String emai, String pass){
-
+    private boolean isValidLogin(String emai, String pass){
         if(!isValidEmail(emai)){
-            Toast.makeText(Login.this, "Email incorrecto", Toast.LENGTH_SHORT).show();
-            return;
+            return false;
         }
-
         if(!isValidPassword(pass)){
-            Toast.makeText(Login.this, "Password incorrecto", Toast.LENGTH_SHORT).show();
-            return;
+            return false;
         }
-
-        gotoMain();
+        return true;
     }
 
+    private void saveOnPreferences(String email, String pass){
+        if(isValidEmail(email)){
+            preferences.setPref(Preferences.MAIL,email);
+        }
+        if(isValidPassword(pass)){
+            preferences.setPref(Preferences.PASSWORD,pass);
+        }
+    }
 
     private boolean isValidEmail(String email){
         return !TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches();

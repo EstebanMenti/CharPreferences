@@ -5,4 +5,6 @@
     <string name="passHint">Password</string>
     <string name="switchRemember">Remember</string>
     <string name="btnLogin">Login</string>
+    <string name="menuLogOut">Log Out</string>
+    <string name="menuForgetAndLogOut">Forget and log Out</string>
 </resources>
